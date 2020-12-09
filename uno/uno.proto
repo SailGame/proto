@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package Uno;
+
+message StartGameSettings {
+    bool isDraw2Consumed = 1;
+    bool canSkipRespond = 2;
+    bool hasWildSwapHandsCard = 3;
+    bool canDoubtDraw4 = 4;
+    int32 roundTime = 5;
+}
+
+message UserOperation {
+    oneof Operation {
+        Play play = 1;
+        Draw draw = 2;
+        Uno uno = 3;
+        // someone doesn't yell 'UNO' with only 1 card
+        Catch catch = 4;
+        Doubt doubt = 5;
+
+        Exit exit = 11;
+    }
+}
+
+message NotifyMsg {
+    oneof Msg {
+        // user operation
+        Play play = 1;
+        ForcedDraw forcedDraw = 2;
+        Catch catch = 3;
+        Doubt doubt = 4;
+
+        // state
+        State state = 11;
+    }
+}

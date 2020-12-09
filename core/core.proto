@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package Core;
+import "core/types.proto";
+import "core/provider.proto";
+
+option go_package = "core;core";
+
+service GameCore {
+  // provider
+  rpc Provider(stream ProviderMsg) returns (stream ProviderMsg) {}
+
+  // client
+  rpc Login(LoginArgs) returns (LoginRet) {}
+  rpc QueryAccount(QueryAccountArgs) returns (QueryAccountRet) {}
+
+  // room
+  rpc CreateRoom(CreateRoomArgs) returns (CreateRoomRet) {}
+  rpc ControlRoom(ControlRoomArgs) returns (ControlRoomRet) {}
+  rpc ListRoom(ListRoomArgs) returns (ListRoomRet) {}
+  rpc JoinRoom(JoinRoomArgs) returns (JoinRoomRet) {}
+  rpc ExitRoom(ExitRoomArgs) returns (ExitRoomRet) {}
+  rpc QueryRoom(QueryRoomArgs) returns (QueryRoomRet) {}
+  // ready, start, playX
+  rpc OperationInRoom(OperationInRoomArgs) returns (OperationInRoomRet) {}
+
+  // chat
+  rpc Message(MessageArgs) returns (MessageRet) {}
+
+  // broadcast
+  rpc Listen(ListenArgs) returns (stream BroadcastMsg) {}
+}

@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package Texas;
+
+message StartGameSettings {
+    int32 blind = 1;
+    bool rank = 2;
+    int32 roundTime = 3;
+}
+
+message UserOperation {
+    oneof Operation {
+        Raise raise = 1;
+        Check check = 2;
+        AllIn allIn = 3;
+        Drop drop = 4;
+
+        Exit exit = 11;
+    }
+}
+
+message NotifyMsg {
+    oneof Msg {
+        // user operation
+        Raise raise = 1;
+        Check check = 2;
+        AllIn allIn = 3;
+        Drop drop = 4;
+
+        // state
+        State state = 11;
+
+        // system operation
+        PreFlop preFlop = 21;
+        Flop flop = 22;
+        Turn turn = 23;
+        River river = 24;
+        End end = 25;
+
+        SmallBlind smallBlind = 26;
+        BigBlind bigBlind = 27;
+        Dealer dealer = 28;
+
+        Exit exit = 41;
+    }
+}
+
+message Raise {
+    uint32 userId = 1;
+    uint32 points = 2;
+}
+
+message Check {
+    uint32 userId = 1;
+}
+
+message AllIn {
+    uint32 userId = 1;
+}
+
+message Drop {
+    uint32 userId = 1;
+}
+
+message Card {
+    enum Color {
+
+    }
+    Color color = 1;
+    int32 num = 2;
+}
+
+message PreFlop {
+    Card userCardOne = 1;
+    Card userCardTwo = 2;
+}
+
+message Flop {
+    Card deckCardOne = 1;
+    Card deckCardTwo = 2;
+    Card deckCardThree = 3;
+}
+
+message Turn {
+    Card deckCardFour = 1;
+}
+
+message River {
+    Card deckCardFive = 1;
+}
+
+message UserSettlement {
+    uint32 userId = 1;
+    int32 points = 2;
+}
+
+message End {
+    repeated UserSettlement userSettlement = 1;
+}
+
+
+message SmallBlind {
+    uint32 userId;
+    int32 points;    
+}
+
+message BigBlind {
+    uint32 userId;
+    int32 points;    
+}
+
+message Dealer {
+    uint32 userId;
+}
+
+message Exit {
+    uint32 userId;
+}
