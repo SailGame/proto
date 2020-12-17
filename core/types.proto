@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+package Core;
+
+import "core/error.proto";
+import "google/protobuf/any.proto";
+
+option go_package = "core;core";
+// Args
+// client
+message LoginArgs {
+  string userName = 1;
+  string password = 2;
+}
+
+message QueryAccountArgs {
+  oneof key {
+    string userName = 1;
+    // could get private info
+    string token = 2;
+  }
+}
+
+// room
+message CreateRoomArgs {
+  string token = 1;
+}
+
+message ControlRoomArgs {
+  string token = 1;
+  int32 roomId = 2;
+
+  string gameName = 11;
+  string roomPassword = 12;
+
+  google.protobuf.Any custom = 21;
+}
+
+message ListRoomArgs {
+  string gameName = 1;
+}
+
+message JoinRoomArgs {
+  string token = 1;
+  int32 roomId = 2;
+}
+
+message ExitRoomArgs {
+  string token = 1;
+}
+
+message QueryRoomArgs {
+  string token = 1;
+  int32 roomId = 2;
+}
+
+// ready, start, playX
+message OperationInRoomArgs {
+  string token = 1;
+  int32 roomId = 2;
+  oneof RoomOperation {
+    MessageArgs messageArgs = 11;
+    // room owner use this to start game
+    bool ready = 12;
+
+    google.protobuf.Any custom = 21;
+  }
+}
+
+// chat
+message MessageArgs {
+  string token = 1;
+  string message = 2;
+}
+
+// broadcast
+message ListenArgs {
+  int32 sequenceId = 1;
+
+  oneof broadcast {
+    // chat
+    string message = 11;
+
+    // room operation
+    // notify the change of a room to the user in that room
+    JoinRoomArgs joinRoomArgs = 12;
+    ExitRoomArgs exitRoomArgs = 13;
+
+    // game operation
+    google.protobuf.Any custom = 21;
+  }
+}
+
+// Ret
+// client
+message LoginRet {
+  ErrorNumber errno = 1;
+  string token = 2;
+  Account account = 3;
+}
+
+message QueryAccountRet {
+  ErrorNumber errno = 1;
+  Account account = 2;
+}
+
+// room
+message CreateRoomRet {
+  ErrorNumber errno = 1;
+}
+
+message ControlRoomRet {
+  ErrorNumber errno = 1;
+
+  google.protobuf.Any custom = 11;
+}
+
+message ListRoomRet {
+  ErrorNumber errno = 1;
+  repeated Room room = 2;
+}
+message JoinRoomRet {
+  ErrorNumber errno = 1;
+}
+message ExitRoomRet {
+  ErrorNumber errno = 1;
+}
+message QueryRoomRet {
+  ErrorNumber errno = 1;
+}
+
+// ready, start, playX
+message OperationInRoomRet {
+  ErrorNumber errno = 1;
+}
+
+// chat
+message MessageRet {
+  ErrorNumber errno = 1;
+}
+
+// broadcast
+message ListenRet {
+  ErrorNumber errno = 1;
+}
+
+message Account {
+  string userName = 1;
+  int32 points = 2;
+}
+
+message Room {
+  string gameName = 1;
+  int32 roomId = 2;
+  repeated string userName = 3;
+}
+
+message BroadcastMsg {
+  // 0 means from game provider
+  uint32 fromUser = 1;
+  // 0 means there are multiple receivers
+  uint32 toUser = 2;
+  // game
+  oneof Msg {
+    google.protobuf.Any custom = 21;
+    // TODO: should we use a specific type?
+    google.protobuf.Any chat = 22;
+  }
+}

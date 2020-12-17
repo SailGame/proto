@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package Core;
+
+import "google/protobuf/any.proto";
+
+option go_package = "core;core";
+
+enum ErrorNumber {
+    OK = 0;
+    UnkownError = 1;
+    // TODO
+    // add more error type
+    // UnkownError is designed as a temporary solution, every error should be defiend clearly
+
+    // User
+
+    // Room
+    ControlRoom_RoomNotExist = 31;
+    ControlRoom_PermDenied = 32;
+    ControlRoom_RequiredProviderNotExist = 33;
+    JoinRoom_InvalidToken = 41;
+    JoinRoom_InvalidRoomID = 42;
+    JoinRoom_FullRoom = 43;
+}

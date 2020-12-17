@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package Core;
+import "core/error.proto";
+import "core/types.proto";
+import "google/protobuf/any.proto";
+
+option go_package = "core;core";
+// provider
+message ProviderMsg {
+  int32 sequenceId = 1;
+  oneof Msg {
+    // Provider to Core
+    RegisterArgs registerArgs = 11;
+    NotifyMsg notifyMsg = 12;
+
+    RegisterRet registerRet = 31;
+
+    // Core to Provider
+    StartGameArgs startGameArgs = 51;
+    QueryStateArgs queryStateArgs = 52;
+    UserOperationArgs userOperationArgs = 53;
+
+    StartGameRet startGameRet = 71;
+    QueryStateRet queryStateRet = 72;
+  }
+}
+
+message GameSetting {
+  int32 maxUsers = 1;
+  int32 minUsers = 2;
+}
+
+message RegisterArgs {
+  int32 id = 1;
+  string gameName = 2;
+  GameSetting gameSetting = 3;
+}
+
+message RegisterRet {
+  ErrorNumber errno = 1;
+}
+
+message StartGameArgs {
+  repeated uint32 userId = 1;
+  google.protobuf.Any custom = 2;
+}
+
+message StartGameRet {
+  ErrorNumber errno = 1;
+  int32 gameId = 2;
+}
+
+message UserOperationArgs {
+  int32 gameId = 1;
+  uint32 userId = 2;
+
+  google.protobuf.Any custom = 11;
+}
+
+message NotifyMsg {
+  ErrorNumber errno = 1;
+  int32 gameId = 2;
+  // 0 -> all
+  // -1 -> except user 1
+  // 1 -> user 1
+  int32 userId = 3;
+
+  google.protobuf.Any custom = 11;
+}
+
+message QueryStateArgs {
+  int32 gameId = 1;
+  // 0 -> show full state
+  // x -> show visible state to user x
+  uint32 userId = 2;
+}
+
+message QueryStateRet {
+  ErrorNumber errno = 1;
+  int32 gameId = 2;
+
+  google.protobuf.Any custom = 11;
+}
