@@ -14,15 +14,15 @@ message ProviderMsg {
     RegisterArgs registerArgs = 11;
     NotifyMsg notifyMsg = 12;
 
-    StartGameRet startGameRet = 71;
-    QueryStateRet queryStateRet = 72;
-
     // Core to Provider
     RegisterRet registerRet = 31;
 
     StartGameArgs startGameArgs = 51;
-    QueryStateArgs queryStateArgs = 52;
-    UserOperationArgs userOperationArgs = 53;
+    CloseGameArgs closeGameArgs = 52;
+
+  
+    QueryStateArgs queryStateArgs = 71;
+    UserOperationArgs userOperationArgs = 72;
   }
 }
 
@@ -42,17 +42,17 @@ message RegisterRet {
 }
 
 message StartGameArgs {
-  repeated uint32 userId = 1;
-  google.protobuf.Any custom = 2;
+  int32 roomId = 1;
+  repeated uint32 userId = 2;
+  google.protobuf.Any custom = 11;
 }
 
-message StartGameRet {
-  ErrorNumber errno = 1;
-  int32 gameId = 2;
+message CloseGameArgs {
+  int32 roomId = 1;
 }
 
 message UserOperationArgs {
-  int32 gameId = 1;
+  int32 roomId = 1;
   uint32 userId = 2;
 
   google.protobuf.Any custom = 11;
@@ -60,7 +60,7 @@ message UserOperationArgs {
 
 message NotifyMsg {
   ErrorNumber errno = 1;
-  int32 gameId = 2;
+  int32 roomId = 2;
   // 0 -> all
   // -1 -> except user 1
   // 1 -> user 1
@@ -70,15 +70,8 @@ message NotifyMsg {
 }
 
 message QueryStateArgs {
-  int32 gameId = 1;
+  int32 roomId = 1;
   // 0 -> show full state
   // x -> show visible state to user x
   uint32 userId = 2;
-}
-
-message QueryStateRet {
-  ErrorNumber errno = 1;
-  int32 gameId = 2;
-
-  google.protobuf.Any custom = 11;
 }
