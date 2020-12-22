@@ -9,8 +9,6 @@ option go_package = "core;core";
 enum ErrorNumber {
     OK = 0;
     UnkownError = 1;
-    // TODO
-    // add more error type
     // UnkownError is designed as a temporary solution, every error should be defiend clearly
 
     // User
@@ -22,4 +20,8 @@ enum ErrorNumber {
     JoinRoom_InvalidToken = 41;
     JoinRoom_InvalidRoomID = 42;
     JoinRoom_FullRoom = 43;
+    OperRoom_InvalidToken = 51;
+    OperRoom_NotInRoom = 52;
+    OperRoom_ProviderUnavailable = 53;
+    OperRoom_CannotChangeReadyState = 54;
 }
