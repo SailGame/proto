@@ -54,14 +54,19 @@ message QueryRoomArgs {
   int32 roomId = 2;
 }
 
+
+enum Ready {
+  UNSET = 0;
+  READY = 1;
+  CANCEL = 2;
+}
+
 // ready, start, playX
 message OperationInRoomArgs {
   string token = 1;
-  int32 roomId = 2;
   oneof RoomOperation {
-    MessageArgs messageArgs = 11;
     // room owner use this to start game
-    bool ready = 12;
+    Ready ready = 11;
 
     google.protobuf.Any custom = 21;
   }
@@ -71,6 +76,9 @@ message OperationInRoomArgs {
 message MessageArgs {
   string token = 1;
   string message = 2;
+  // set empty to broadcast the msg
+  string dstUser = 3;
+  int32  dstRoom = 4;
 }
 
 // broadcast
