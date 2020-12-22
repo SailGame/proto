@@ -102,6 +102,7 @@ message QueryAccountRet {
 // room
 message CreateRoomRet {
   ErrorNumber err = 1;
+  int32 roomId = 2;
 }
 
 message ControlRoomRet {
