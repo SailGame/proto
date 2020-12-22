@@ -12,6 +12,9 @@ enum ErrorNumber {
     // UnkownError is designed as a temporary solution, every error should be defiend clearly
 
     // User
+    User_FailToCreateUser = 21;
+    User_FailToFindUser = 22;
+    User_FailToGenerateToken = 23;
 
     // Room
     ControlRoom_RoomNotExist = 31;
