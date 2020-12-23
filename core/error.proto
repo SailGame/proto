@@ -27,4 +27,5 @@ enum ErrorNumber {
     OperRoom_NotInRoom = 52;
     OperRoom_ProviderUnavailable = 53;
     OperRoom_CannotChangeReadyState = 54;
+    QryRoom_InvalidRoomID = 61;
 }
