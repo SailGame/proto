@@ -12,7 +12,7 @@ message ProviderMsg {
   oneof Msg {
     // Provider to Core
     RegisterArgs registerArgs = 11;
-    NotifyMsg notifyMsg = 12;
+    NotifyMsgArgs notifyMsgArgs = 12;
 
     // Core to Provider
     RegisterRet registerRet = 31;
@@ -57,7 +57,7 @@ message UserOperationArgs {
   google.protobuf.Any custom = 11;
 }
 
-message NotifyMsg {
+message NotifyMsgArgs {
   ErrorNumber err = 1;
   int32 roomId = 2;
   // 0 -> all
