@@ -37,7 +37,7 @@ message RegisterArgs {
 }
 
 message RegisterRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 message StartGameArgs {
@@ -58,7 +58,7 @@ message UserOperationArgs {
 }
 
 message NotifyMsg {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
   int32 roomId = 2;
   // 0 -> all
   // -1 -> except user 1
