@@ -23,9 +23,12 @@ enum ErrorNumber {
     JoinRoom_InvalidToken = 41;
     JoinRoom_InvalidRoomID = 42;
     JoinRoom_FullRoom = 43;
+    JoinRoom_UserIsInAnotherRoomAndFailToExit = 44;
     OperRoom_InvalidToken = 51;
     OperRoom_NotInRoom = 52;
     OperRoom_ProviderUnavailable = 53;
     OperRoom_CannotChangeReadyState = 54;
     QryRoom_InvalidRoomID = 61;
+    ExitRoom_InvalidToken = 71;
+    ExitRoom_NotInRoom = 72;
 }
