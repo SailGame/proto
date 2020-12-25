@@ -89,54 +89,54 @@ message ListenArgs {
 // Ret
 // client
 message LoginRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
   string token = 2;
   Account account = 3;
 }
 
 message QueryAccountRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
   Account account = 2;
 }
 
 // room
 message CreateRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 message ControlRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 
   google.protobuf.Any custom = 11;
 }
 
 message ListRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
   repeated Room room = 2;
 }
 message JoinRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 message ExitRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 message QueryRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 // ready, start, playX
 message OperationInRoomRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 // chat
 message MessageRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 // broadcast
 message ListenRet {
-  ErrorNumber errno = 1;
+  ErrorNumber err = 1;
 }
 
 message Account {
