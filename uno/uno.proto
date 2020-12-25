@@ -90,11 +90,6 @@ message DoubtRsp {
     repeated Card handcards = 4;
 }
 
-message JoinGame {
-    int32 userId = 1;
-    string username = 2;
-}
-
 message Exit {
     int32 userId = 1;
 }
