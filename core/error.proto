@@ -12,6 +12,9 @@ enum ErrorNumber {
     // UnkownError is designed as a temporary solution, every error should be defiend clearly
 
     // User
+    User_FailToCreateUser = 21;
+    User_FailToFindUser = 22;
+    User_FailToGenerateToken = 23;
 
     // Room
     ControlRoom_RoomNotExist = 31;
@@ -20,8 +23,12 @@ enum ErrorNumber {
     JoinRoom_InvalidToken = 41;
     JoinRoom_InvalidRoomID = 42;
     JoinRoom_FullRoom = 43;
+    JoinRoom_UserIsInAnotherRoomAndFailToExit = 44;
     OperRoom_InvalidToken = 51;
     OperRoom_NotInRoom = 52;
     OperRoom_ProviderUnavailable = 53;
     OperRoom_CannotChangeReadyState = 54;
+    QryRoom_InvalidRoomID = 61;
+    ExitRoom_InvalidToken = 71;
+    ExitRoom_NotInRoom = 72;
 }
