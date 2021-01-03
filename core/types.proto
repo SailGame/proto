@@ -153,8 +153,15 @@ message Room {
 }
 
 message RoomUser {
+  enum RoomUserState {
+    ERROR = 0;
+    PREPARING = 1;
+    READY = 2;
+    DISCONNECTED = 3;
+    PLAYING = 4;
+  }
   string userName = 1;
-  Ready readyState = 2;
+  RoomUserState userState = 2;
 }
 
 message RoomDetails {
