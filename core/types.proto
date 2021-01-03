@@ -56,6 +56,8 @@ message QueryRoomArgs {
 
 
 enum Ready {
+  // default value
+  // keep user state unchanged
   UNSET = 0;
   READY = 1;
   CANCEL = 2;
@@ -65,7 +67,7 @@ enum Ready {
 message OperationInRoomArgs {
   string token = 1;
   oneof RoomOperation {
-    // room owner use this to start game
+    // the game is started automatically when every user is ready
     Ready ready = 11;
 
     google.protobuf.Any custom = 21;
@@ -183,8 +185,9 @@ message BroadcastMsg {
     google.protobuf.Any custom = 21;
     // TODO: should we use a specific type?
     google.protobuf.Any chat = 22;
-    // room operation
-    // notify the change of a room to the user in that room
+
+    // notify the state of a room to the user in that room
+    // joinRoom, exitRoom, setRoom, OperationInRoomArgs(except custom msg)
     RoomDetails roomDetails = 33;
   }
 }
