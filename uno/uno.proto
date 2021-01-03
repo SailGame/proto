@@ -38,7 +38,15 @@ message NotifyMsg {
         CatchRsp catchRsp = 13;
         Doubt doubt = 21;
         DoubtRsp doubtRsp = 22;
+
+        GameStart gameStart = 51;
     }
+}
+
+message GameStart {
+    repeated Card initHandcards = 1;
+    Card flippedCard = 2;
+    uint32 firstPlayerId = 3;
 }
 
 message Draw {
