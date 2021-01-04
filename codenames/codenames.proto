@@ -3,7 +3,6 @@ syntax = "proto3";
 package Codenames;
 
 message StartGameSettings {
-    bool isLessThan4Users = 1;
     int32 hourglass = 2;
 }
 
