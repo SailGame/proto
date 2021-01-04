@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package Codenames;
+
+message StartGameSettings {
+    bool isLessThan4Users = 1;
+    int32 hourglass = 2;
+}
+
+message UserOperation {
+    oneof Operation {
+        LeaderWord lword = 1;
+        FollowerWord fword = 2;
+    }
+}
+
+message NotifyMsg {
+    oneof Msg {
+        StartStateMsg start = 1;
+        ProcessStateMsg process = 2;
+    }
+}
+
+message LeaderWord {
+    Word word = 1;
+}
+
+message FollowerWord {
+    Word word = 1;
+}
+
+message Word {
+    string word = 1;
+}
+
+message StartStateMsg {
+    // 5x5 matrix of words and its color
+    CardInfo cardInfo = 1;
+    Turn role = 2;
+    Turn turn = 3;
+}
+
+message ProcessStateMsg {
+    Word word = 1;
+    State state = 2;
+    Turn turn = 3;
+}
+
+message CardInfo {
+    repeated Card cards = 1;
+}
+
+enum Turn {
+    BLUE_LEADER = 0;
+    BLUE_FOLLOWER = 1;
+    RED_LEADER = 2;
+    RED_FOLLOWER = 3;
+}
+
+enum State {
+    NOT_DETERMINED = 0;
+    BULE_WINS = 1;
+    RED_WINS = 2;
+    TIE = 3;
+}
+
+message Card {
+    Word word = 1;
+    Party party = 2;
+}
+
+enum Party {
+    BYSTANDER = 0;
+    BLUE = 1;
+    RED = 2;
+    ASSASSIN = 3;
+}
