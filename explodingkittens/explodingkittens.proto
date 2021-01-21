@@ -29,6 +29,7 @@ message NotifyMsg {
         SwapResult swapResult = 3;
         ExtortResult extortResult = 4;
         DrawResult drawResult = 5;
+        KO ko = 6;
     }
 }
 
@@ -75,6 +76,7 @@ enum CardType {
 }
 
 message BombDisposal {
+    int32 pos;
 }
 
 message DrawCard {
@@ -97,8 +99,14 @@ message SwapResult {
 
 message ExtortResult {
     CardType card;
+    int32 srcUid = 1;
+    int32 dstUid = 2;
 }
 
 message DrawResult {
-    CardType card;
+    CardType card = 1;
+}
+
+message KO {
+    int32 userId = 1;
 }
