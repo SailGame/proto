@@ -15,6 +15,7 @@ enum ErrorNumber {
     User_FailToCreateUser = 21;
     User_FailToFindUser = 22;
     User_FailToGenerateToken = 23;
+    QueryAccount_InvalidUserNameOrToken = 26;
 
     // Room
     ControlRoom_RoomNotExist = 31;

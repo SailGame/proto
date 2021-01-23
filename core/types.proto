@@ -99,6 +99,8 @@ message LoginRet {
 message QueryAccountRet {
   ErrorNumber err = 1;
   Account account = 2;
+  // -1 means not in room
+  int32 roomId = 3;
 }
 
 // room
