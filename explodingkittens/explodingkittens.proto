@@ -12,7 +12,7 @@ message UserOperation {
         Reverse reverse = 3;
         Predict predict = 4;
         SeeThrough seeThrough = 5;
-        Swap swap = 6;
+        SwapCards swapCards = 6;
         GetBottom getBottom = 7;
         Shuffle shuffle = 8;
         Extort extort = 9;
@@ -45,7 +45,7 @@ message Predict {}
 
 message SeeThrough {}
 
-message Swap {
+message SwapCards {
     int32 targetUid = 1;
 }
 
@@ -68,7 +68,7 @@ enum CardType {
     REVERSE = 3;
     PREDICT = 4;
     SEE_THROUGH = 5;
-    SWAP = 6;
+    SWAPCARDS = 6;
     GET_BOTTOM = 7;
     SHUFFLE = 8;
     EXTORT = 9;
