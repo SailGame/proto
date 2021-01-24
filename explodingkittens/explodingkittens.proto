@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ExplodingKittens
+package ExplodingKittens;
 
 message StartGameSettings {
 }
@@ -76,16 +76,16 @@ enum CardType {
 }
 
 message BombDisposal {
-    int32 pos;
+    int32 pos = 1;
 }
 
 message DrawCard {
 }
 
 message GameStart {
-    int32 userId = 0;
-    repeated int32 userIds = 1;
-    repeated CardType cards = 2;
+    int32 userId = 1;
+    repeated int32 userIds = 2;
+    repeated CardType cards = 3;
 }
 
 message CardOperation {
@@ -98,9 +98,9 @@ message SwapResult {
 }
 
 message ExtortResult {
-    CardType card;
-    int32 srcUid = 1;
-    int32 dstUid = 2;
+    CardType card = 1;
+    int32 srcUid = 2;
+    int32 dstUid = 3;
 }
 
 message DrawResult {
