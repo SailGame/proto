@@ -25,11 +25,12 @@ message UserOperation {
 message NotifyMsg {
     oneof Msg {
         GameStart gameStart = 1;
-        CardOperation cardOperation = 2;
-        SwapResult swapResult = 3;
-        ExtortResult extortResult = 4;
-        DrawResult drawResult = 5;
-        KO ko = 6;
+        RoundStart RoundStart = 2;
+        CardOperation cardOperation = 3;
+        SwapResult swapResult = 4;
+        ExtortResult extortResult = 5;
+        DrawResult drawResult = 6;
+        KO ko = 7;
     }
 }
 
@@ -86,6 +87,10 @@ message GameStart {
     int32 userId = 1;
     repeated int32 userIds = 2;
     repeated CardType cards = 3;
+}
+
+message RoundStart {
+    int32 userId = 1;
 }
 
 message CardOperation {
