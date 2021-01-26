@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ExplodingKittens;
+package ExplodingKittensProto;
 
 message StartGameSettings {
 }
