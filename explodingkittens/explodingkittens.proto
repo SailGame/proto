@@ -94,8 +94,9 @@ message RoundStart {
 }
 
 message CardOperation {
-    CardType card = 1;
-    int32 targetUid = 2;
+    int32 userId = 1;
+    CardType card = 2;
+    int32 targetUid = 3;
 }
 
 message SwapResult {
