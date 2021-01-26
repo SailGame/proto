@@ -97,6 +97,7 @@ message CardOperation {
     int32 userId = 1;
     CardType card = 2;
     int32 targetUid = 3;
+    bool isDrawCard = 4;
 }
 
 message SwapResult {
