@@ -63,17 +63,18 @@ message ExtortedRespond {
 }
 
 enum CardType {
-    BOMB = 0;
-    SKIP = 1;
-    SHIRK = 2;
-    REVERSE = 3;
-    PREDICT = 4;
-    SEE_THROUGH = 5;
-    SWAPCARDS = 6;
-    GET_BOTTOM = 7;
-    SHUFFLE = 8;
-    EXTORT = 9;
-    BOMB_DISPOSAL = 10;
+    NONE = 0;
+    BOMB = 1;
+    SKIP = 2;
+    SHIRK = 3;
+    REVERSE = 4;
+    PREDICT = 5;
+    SEE_THROUGH = 6;
+    SWAPCARDS = 7;
+    GET_BOTTOM = 8;
+    SHUFFLE = 9;
+    EXTORT = 10;
+    BOMB_DISPOSAL = 11;
 }
 
 message BombDisposal {
