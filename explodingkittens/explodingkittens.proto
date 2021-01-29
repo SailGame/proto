@@ -29,8 +29,9 @@ message NotifyMsg {
         CardOperation cardOperation = 3;
         SwapResult swapResult = 4;
         ExtortResult extortResult = 5;
-        DrawResult drawResult = 6;
-        KO ko = 7;
+        SeeThroughResult seeThroughResult = 6;
+        DrawResult drawResult = 7;
+        KO ko = 8;
     }
 }
 
@@ -109,6 +110,10 @@ message ExtortResult {
     CardType card = 1;
     int32 srcUid = 2;
     int32 dstUid = 3;
+}
+
+message SeeThroughResult {
+    repeated CardType cards = 1;
 }
 
 message DrawResult {
