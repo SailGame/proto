@@ -32,4 +32,5 @@ enum ErrorNumber {
     QryRoom_InvalidRoomID = 61;
     ExitRoom_InvalidToken = 71;
     ExitRoom_NotInRoom = 72;
+    ExitRoom_IsPlaying = 73;
 }
