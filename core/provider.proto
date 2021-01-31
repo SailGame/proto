@@ -13,12 +13,12 @@ message ProviderMsg {
     // Provider to Core
     RegisterArgs registerArgs = 11;
     NotifyMsgArgs notifyMsgArgs = 12;
+    CloseGameArgs closeGameArgs = 13;
 
     // Core to Provider
     RegisterRet registerRet = 31;
 
     StartGameArgs startGameArgs = 51;
-    CloseGameArgs closeGameArgs = 52;
 
     QueryStateArgs queryStateArgs = 71;
     UserOperationArgs userOperationArgs = 72;
