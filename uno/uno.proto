@@ -46,7 +46,7 @@ message NotifyMsg {
 message GameStart {
     repeated Card initHandcards = 1;
     Card flippedCard = 2;
-    uint32 firstPlayerId = 3;
+    uint32 firstPlayer = 3;
 }
 
 message Draw {

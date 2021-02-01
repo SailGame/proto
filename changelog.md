@@ -1,3 +1,5 @@
+## 1.2.1
+- Tweak a field name of Uno proto
 ## 1.2.0
 - Add roomID to QryAccountRet
 - Add IsPlaying to ExitRoomRet
