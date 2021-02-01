@@ -27,19 +27,12 @@ message NotifyMsg {
         AllIn allIn = 3;
         Drop drop = 4;
 
-        // state
-        State state = 11;
-
         // system operation
         PreFlop preFlop = 21;
         Flop flop = 22;
         Turn turn = 23;
         River river = 24;
         End end = 25;
-
-        SmallBlind smallBlind = 26;
-        BigBlind bigBlind = 27;
-        Dealer dealer = 28;
 
         Exit exit = 41;
     }
@@ -64,7 +57,10 @@ message Drop {
 
 message Card {
     enum Color {
-
+        spade = 0;
+        heart = 1;
+        club = 2;
+        dianmond = 3;
     }
     Color color = 1;
     int32 num = 2;
@@ -98,21 +94,6 @@ message End {
     repeated UserSettlement userSettlement = 1;
 }
 
-
-message SmallBlind {
-    uint32 userId;
-    int32 points;    
-}
-
-message BigBlind {
-    uint32 userId;
-    int32 points;    
-}
-
-message Dealer {
-    uint32 userId;
-}
-
 message Exit {
-    uint32 userId;
+    uint32 userId = 1;
 }
