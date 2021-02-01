@@ -32,7 +32,8 @@ message NotifyMsg {
         PredictResult predictResult = 6;
         SeeThroughResult seeThroughResult = 7;
         DrawResult drawResult = 8;
-        KO ko = 9;
+        GetBomb getBomb = 9;
+        KO ko = 10;
     }
 }
 
@@ -123,6 +124,10 @@ message SeeThroughResult {
 
 message DrawResult {
     CardType card = 1;
+}
+
+message GetBomb {
+    int32 userId = 1;
 }
 
 message KO {
