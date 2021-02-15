@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package Core;
 
-import "google/protobuf/any.proto";
-
 option go_package = "core;core";
 
 enum ErrorNumber {
