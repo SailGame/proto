@@ -4,27 +4,26 @@ package Texas;
 
 message StartGameSettings {
     int32 blind = 1;
-    bool rank = 2;
     int32 roundTime = 3;
 }
 
 message UserOperation {
     oneof Operation {
-        Raise raise = 1;
+        Bet bet = 1;
         Check check = 2;
-        AllIn allIn = 3;
         Drop drop = 4;
 
         Exit exit = 11;
+
+        QueryState queryState = 21;
     }
 }
 
 message NotifyMsg {
     oneof Msg {
         // user operation
-        Raise raise = 1;
+        Bet bet = 1;
         Check check = 2;
-        AllIn allIn = 3;
         Drop drop = 4;
 
         // system operation
@@ -35,19 +34,17 @@ message NotifyMsg {
         End end = 25;
 
         Exit exit = 41;
+
+        State state = 51;
     }
 }
 
-message Raise {
+message Bet {
     uint32 userId = 1;
     uint32 points = 2;
 }
 
 message Check {
-    uint32 userId = 1;
-}
-
-message AllIn {
     uint32 userId = 1;
 }
 
@@ -96,4 +93,20 @@ message End {
 
 message Exit {
     uint32 userId = 1;
+}
+
+message QueryState {
+}
+
+message UserState {
+    uint32 userid = 1;
+    uint32 roundBet = 2;
+    uint32 totalPoints = 3;
+    repeated Card cards = 4;
+}
+
+message State {
+    uint32 playerNum = 1;
+    repeated Card deckCards = 2;
+    repeated UserState userStates = 3;
 }
