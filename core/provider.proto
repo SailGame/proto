@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package Core;
 import "core/error.proto";
-import "core/types.proto";
 import "google/protobuf/any.proto";
 
 option go_package = "core;core";
