@@ -14,6 +14,7 @@ message UserOperation {
         Drop drop = 4;
 
         Exit exit = 11;
+        Continue continue = 12;
 
         QueryState queryState = 21;
     }
@@ -93,6 +94,9 @@ message End {
 
 message Exit {
     uint32 userId = 1;
+}
+
+message Continue {
 }
 
 message QueryState {
