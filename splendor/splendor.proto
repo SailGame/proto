@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package Splendor;
+
+message StartGameSettings {
+    int32 roundTime = 10;
+}
+
+message UserOperation {
+    oneof Operation {
+        Take take = 1;
+        Purchase purchase = 2;
+        Reserve reserve = 3;
+    }
+}
+
+message NotifyMsg {
+    oneof Msg {
+        ReserveFromDeckRsp reserveRsp = 4;
+        GameState state = 10;
+        GameStart gameStart = 11;
+        UserOperation lastUserOperation = 20;  // broadcast to other players
+    }
+}
+
+message Take {
+    repeated ResourceType resources = 1;
+}
+
+message Purchase {
+    // if developmentLevel is -1, 
+    // it means purchase the development card reserved in advance
+    int32 developmentLevel = 1;
+    int32 index = 2;
+}
+
+message Reserve {
+    int32 developmentLevel = 1;
+    // if index is -1, 
+    // it means reserve the development card on the top of deck,
+    // in which condition, other players don't know the reserved card
+    // so an extra ReserveFromDeckRsp is needed to inform the player only
+    int32 index = 2;
+}
+
+message ReserveFromDeckRsp {
+    Development card = 1;
+}
+
+message GameStart {
+    int32 firstPlayer = 1;
+    GameState state = 2;
+}
+
+message GameState {
+    DevelopmentLevelState devLevel1 = 1;
+    DevelopmentLevelState devLevel2 = 2;
+    DevelopmentLevelState devLevel3 = 3;
+    ResourceMap resourcesOnBoard = 10;
+    repeated Noble noblesOnBoard = 20;
+    repeated PlayerState playerStates = 30;
+}
+
+message PlayerState {
+    ResourceMap development = 1;
+    ResourceMap resource = 2;
+    repeated Noble nobles = 3;
+    int32 reservedNum = 4;  // can reserve at most 3 development cards
+    int32 points = 10;
+}
+
+message DevelopmentLevelState {
+    int32 deckNum = 1;
+    repeated Development cards = 2;
+}
+
+message Resource {
+    ResourceType resourceType = 1;
+}
+
+enum ResourceType {
+    AGATE = 0;  // brown
+    EMERALD = 1;  // green
+    DIAMOND = 2;  // white
+    RUBY = 3;  // red
+    SAPPHIRE = 4;  // blue
+    GOLD = 5;  // yellow
+    TBD = 10;  // to be determined
+}
+
+message Development {
+    ResourceMap price = 1;
+    ResourceType resourceType = 2;
+    int32 points = 3;
+}
+
+// protobuf map's key cannot be enum type
+message ResourceMap {
+    repeated ResourceEntry entries = 1;
+}
+
+message ResourceEntry {
+    ResourceType resourceType = 1;
+    int32 number = 2;
+}
+
+message Noble {
+    ResourceMap capital = 1;
+    int32 points = 2;
+}
