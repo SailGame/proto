@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package ExplodingKittensProto;
+
+message StartGameSettings {
+}
+
+message UserOperation {
+    oneof Operation {
+        Skip skip = 1;
+        Shirk shirk = 2;
+        Reverse reverse = 3;
+        Predict predict = 4;
+        SeeThrough seeThrough = 5;
+        SwapCards swapCards = 6;
+        GetBottom getBottom = 7;
+        Shuffle shuffle = 8;
+        Extort extort = 9;
+        ExtortedRespond extortedRespond = 10;
+        BombDisposal bombDisposal = 11;
+        DrawCard drawCard = 12;
+    }
+}
+
+message NotifyMsg {
+    oneof Msg {
+        GameStart gameStart = 1;
+        RoundStart RoundStart = 2;
+        CardOperation cardOperation = 3;
+        SwapResult swapResult = 4;
+        ExtortResult extortResult = 5;
+        PredictResult predictResult = 6;
+        SeeThroughResult seeThroughResult = 7;
+        DrawResult drawResult = 8;
+        GetBomb getBomb = 9;
+        KO ko = 10;
+    }
+}
+
+message Skip {}
+
+message Shirk {
+    int32 targetUid = 1;
+}
+
+message Reverse {}
+
+message Predict {}
+
+message SeeThrough {}
+
+message SwapCards {
+    int32 targetUid = 1;
+}
+
+message GetBottom {}
+
+message Shuffle {}
+
+message Extort {
+    int32 targetUid = 1;
+}
+
+message ExtortedRespond {
+    CardType card = 1;
+}
+
+enum CardType {
+    NONE = 0;
+    BOMB = 1;
+    SKIP = 2;
+    SHIRK = 3;
+    REVERSE = 4;
+    PREDICT = 5;
+    SEE_THROUGH = 6;
+    SWAPCARDS = 7;
+    GET_BOTTOM = 8;
+    SHUFFLE = 9;
+    EXTORT = 10;
+    BOMB_DISPOSAL = 11;
+}
+
+message BombDisposal {
+    int32 pos = 1;
+}
+
+message DrawCard {
+}
+
+message GameStart {
+    int32 userId = 1;
+    repeated int32 userIds = 2;
+    repeated CardType cards = 3;
+}
+
+message RoundStart {
+    int32 userId = 1;
+}
+
+message CardOperation {
+    int32 userId = 1;
+    CardType card = 2;
+    int32 targetUid = 3;
+    bool isDrawCard = 4;
+}
+
+message SwapResult {
+    repeated CardType cards = 1;
+}
+
+message ExtortResult {
+    CardType card = 1;
+    int32 srcUid = 2;
+    int32 dstUid = 3;
+}
+
+message PredictResult{
+    int32 pos = 1;
+}
+
+message SeeThroughResult {
+    repeated CardType cards = 1;
+}
+
+message DrawResult {
+    CardType card = 1;
+}
+
+message GetBomb {
+    int32 userId = 1;
+}
+
+message KO {
+    int32 userId = 1;
+}
