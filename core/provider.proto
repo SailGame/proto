@@ -43,15 +43,23 @@ message StartGameArgs {
   int32 roomId = 1;
   repeated uint32 userId = 2;
   google.protobuf.Any custom = 11;
+  google.protobuf.Any cache = 12;
 }
 
 message CloseGameArgs {
   int32 roomId = 1;
+  google.protobuf.Any cache = 11;
+}
+
+enum UserState {
+  ALIVE = 0;
+  DISCONNECTED = 1;
 }
 
 message UserOperationArgs {
   int32 roomId = 1;
   uint32 userId = 2;
+  UserState userState = 3;
 
   google.protobuf.Any custom = 11;
 }
