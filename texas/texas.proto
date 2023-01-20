@@ -38,8 +38,8 @@ message Fold {
 }
 
 enum QueryKind {
-    LEDGER = 1;
-    LOG = 2;
+    LEDGER = 0;
+    LOG = 1;
 }
 
 message Query {
