@@ -5,13 +5,13 @@ package Texas;
 message StartGameSettings {
     int32 blind = 1;
     int32 roundTime = 2;
+    int32 initialChips = 3;
 }
 
 message UserOperation {
     oneof Operation {
         Bet bet = 1;
-        Check check = 2;
-        Fold fold = 3;
+        Fold fold = 2;
 
         Query query = 11;
     }
@@ -27,10 +27,6 @@ message NotifyMsg {
 message Bet {
     uint32 userId = 1;
     uint32 chips = 2;
-}
-
-message Check {
-    uint32 userId = 1;
 }
 
 message Fold {
@@ -51,7 +47,7 @@ message Card {
         spade = 0;
         heart = 1;
         club = 2;
-        dianmond = 3;
+        diamond = 3;
     }
     Color color = 1;
     int32 num = 2;
@@ -70,16 +66,16 @@ enum UserGameState {
 
 message UserState {
     uint32 userid = 1;
-    repeated Card cards = 2;
-    uint32 roundBet = 3;
-    uint32 totalBet = 4;
-    uint32 totalChips = 5;
-    UserGameState gameState = 6;
+    uint32 userPos = 2;
+    repeated Card cards = 3;
+    uint32 roundBet = 4;
+    uint32 totalBet = 5;
+    uint32 totalChips = 6;
+    UserGameState gameState = 7;
 }
 
 message GameState {
-    uint32 playerNum = 1;
-    uint32 remaingTime = 2;
+    uint32 remaingTime = 1;
 
     repeated Card deckCards = 11;
     repeated UserState userStates = 12;
