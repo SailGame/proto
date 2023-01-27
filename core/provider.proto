@@ -62,7 +62,7 @@ message NotifyMsgArgs {
   // 0 -> all
   // -1 -> except user 1
   // 1 -> user 1
-  int32 userId = 3;
+  uint32 userId = 3;
 
   google.protobuf.Any custom = 11;
 }

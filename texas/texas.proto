@@ -25,12 +25,10 @@ message NotifyMsg {
 }
 
 message Bet {
-    uint32 userId = 1;
-    uint32 chips = 2;
+    uint32 chips = 1;
 }
 
 message Fold {
-    uint32 userId = 1;
 }
 
 enum QueryKind {
@@ -76,6 +74,7 @@ message UserState {
 
 message GameState {
     uint32 remaingTime = 1;
+    uint32 executor = 2;
 
     repeated Card deckCards = 11;
     repeated UserState userStates = 12;
