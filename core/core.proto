@@ -4,7 +4,7 @@ package Core;
 import "core/types.proto";
 import "core/provider.proto";
 
-option go_package = "core;core";
+option go_package = "./core;core";
 
 service GameCore {
   // provider

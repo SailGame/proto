@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package Core;
 
-option go_package = "core;core";
+option go_package = "./core;core";
 
 enum ErrorNumber {
     OK = 0;
