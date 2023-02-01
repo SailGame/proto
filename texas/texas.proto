@@ -4,55 +4,40 @@ package Texas;
 
 message StartGameSettings {
     int32 blind = 1;
-    bool rank = 2;
-    int32 roundTime = 3;
+    int32 roundTime = 2;
+    int32 initialChips = 3;
 }
 
 message UserOperation {
     oneof Operation {
-        Raise raise = 1;
-        Check check = 2;
-        AllIn allIn = 3;
-        Drop drop = 4;
+        Bet bet = 1;
+        Fold fold = 2;
 
-        Exit exit = 11;
+        Query query = 11;
     }
 }
 
 message NotifyMsg {
     oneof Msg {
-        // user operation
-        Raise raise = 1;
-        Check check = 2;
-        AllIn allIn = 3;
-        Drop drop = 4;
-
-        // system operation
-        PreFlop preFlop = 21;
-        Flop flop = 22;
-        Turn turn = 23;
-        River river = 24;
-        End end = 25;
-
-        Exit exit = 41;
+        GameState gameState = 1;
+        QueryRet queryRet = 11;
     }
 }
 
-message Raise {
-    uint32 userId = 1;
-    uint32 points = 2;
+message Bet {
+    uint32 chips = 1;
 }
 
-message Check {
-    uint32 userId = 1;
+message Fold {
 }
 
-message AllIn {
-    uint32 userId = 1;
+enum QueryKind {
+    LEDGER = 0;
+    LOG = 1;
 }
 
-message Drop {
-    uint32 userId = 1;
+message Query {
+    QueryKind kind = 1;
 }
 
 message Card {
@@ -60,40 +45,37 @@ message Card {
         spade = 0;
         heart = 1;
         club = 2;
-        dianmond = 3;
+        diamond = 3;
     }
     Color color = 1;
     int32 num = 2;
 }
 
-message PreFlop {
-    Card userCardOne = 1;
-    Card userCardTwo = 2;
+message QueryRet {
+    QueryKind kind = 1;
+    string retJSON = 2;
 }
 
-message Flop {
-    Card deckCardOne = 1;
-    Card deckCardTwo = 2;
-    Card deckCardThree = 3;
+enum UserGameState {
+    PLAYING = 0;
+    FOLD = 1;
+    ALLIN = 2;
 }
 
-message Turn {
-    Card deckCardFour = 1;
+message UserState {
+    uint32 userid = 1;
+    uint32 userPos = 2;
+    repeated Card cards = 3;
+    uint32 roundBet = 4;
+    uint32 totalBet = 5;
+    uint32 totalChips = 6;
+    UserGameState gameState = 7;
 }
 
-message River {
-    Card deckCardFive = 1;
-}
+message GameState {
+    uint32 remaingTime = 1;
+    uint32 executor = 2;
 
-message UserSettlement {
-    uint32 userId = 1;
-    int32 points = 2;
-}
-
-message End {
-    repeated UserSettlement userSettlement = 1;
-}
-
-message Exit {
-    uint32 userId = 1;
+    repeated Card deckCards = 11;
+    repeated UserState userStates = 12;
 }
